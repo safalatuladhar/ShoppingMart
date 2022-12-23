@@ -1,0 +1,26 @@
+<div class="main-content page-m">
+  <div class="section-content">
+    <div class="container-fluid">
+      <h2>Add new category</h2>
+      
+      <form [formGroup]="categoryForm"  >
+      
+        <div class="form-group mb-3">
+          <label>Category Name</label>
+      
+          <input
+            type="text"
+            class="form-control"
+            required
+            formControlName="categoryName"
+          />
+        </div>
+      
+        
+        <button type="submit" class="btn btn-success" (click)="addCategory()"
+        [disabled]="categoryForm.invalid">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>
+

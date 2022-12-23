@@ -1,0 +1,30 @@
+<div class="main-content page-m">
+  <div class="section-content">
+    <div class="container-fluid bg-white p-2">
+    <div class="d-flex justify-content-between mb-2">
+        <h2>Product List</h2>
+        <button class="btn btn-primary" routerLink="/admin/product/add">Add Product</button>
+    </div>
+      <table class="table hover border">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of products">
+                <td>{{product.id}}</td>
+                <td>{{product.name}}</td>
+                <td>
+                    <button routerLink="/admin/product/edit/{{product.id}}" class="btn btn-success me-2">Edit</button>
+                    <button class="btn btn-danger" (click)="deleteProduct(product.id)">Delete</button>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+      
+    </div>
+  </div>
+</div>

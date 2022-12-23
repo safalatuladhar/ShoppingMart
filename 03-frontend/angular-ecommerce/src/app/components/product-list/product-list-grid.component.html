@@ -1,0 +1,63 @@
+<div class="main-content">
+  <div class="section-content section-content-p30">
+    <div class="container-fluid">
+      <div class="row">
+        <div *ngFor="let tempProduct of products" class="col-md-3">
+          <div class="product-box">
+            <a (click)="goToDetails(tempProduct.id)">
+              <img src="{{ tempProduct.imageUrl }}" class="img-responsive" />
+            </a>
+
+            <a (click)="goToDetails(tempProduct.id)">
+              <h1>{{ tempProduct.name }}</h1>
+            </a>
+
+            <div class="price">
+              {{ tempProduct.unitPrice | currency : "NPR " }}
+            </div>
+            <button (click)="addToCart(tempProduct)" class="btn btn-primary btn-sm"> Add to cart</button>
+          </div>
+        </div>
+
+        <!-- //empty products -->
+
+        <div
+          *ngIf="products?.length == 0"
+          class="alert alert-warning col-md-12"
+          role="alert"
+        >
+          No products found.
+        </div>
+
+        <!-- footer begin -->
+
+        <!-- <div class="footer-pagination">
+          <div class="row">
+            <div class="col-md-6"></div>
+
+            <div class="col-md-6">
+              <div class="row">
+                <div class="col-md-9" style="padding-left: 30%">
+                  <ngb-pagination
+                    [(page)]="thePageNumber"
+                    [pageSize]="thePageSize"
+                    [collectionSize]="theTotalElements"
+                    [boundaryLinks]="true"
+                    (pageChange)="listProducts()"
+                  >
+                  </ngb-pagination> -->
+
+                  
+                  
+                <!-- </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+      
+
+        <!-- footer end -->
+      </div>
+    </div>
+  </div>
+</div>
