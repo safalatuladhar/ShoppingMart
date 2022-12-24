@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductCategory } from 'src/app/common/product-category';
+import { LoginService } from 'src/app/services/login.service';
 import { ProductCategoryService } from 'src/app/services/product-category.service';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -16,7 +17,8 @@ export class ProductCategoryMenuComponent implements OnInit {
 
   constructor(private productService: ProductService,
     private readonly router: Router,
-    private readonly categoryService: ProductCategoryService){}
+    private readonly categoryService: ProductCategoryService,
+    public readonly loginService: LoginService){}
 
   ngOnInit(){
 
@@ -30,14 +32,6 @@ export class ProductCategoryMenuComponent implements OnInit {
     });
 
   }
-  // listProductCategories() {
-  //   this.productService.getProductCategories().subscribe(
-  //     data => {
-  //         console.log('Product Categories=' + JSON.stringify(data));
-  //         this.productCategories = data;
-  //     }
-  //   );
-  // }
 
   getProductByCategory(categoryId: number): void {
     this.productService.getProductByCategory(categoryId);
