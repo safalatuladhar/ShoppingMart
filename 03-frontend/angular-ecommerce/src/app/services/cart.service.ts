@@ -15,7 +15,7 @@ export class CartService {
   // storage: Storage = localStorage;
 
   constructor() {
-    //read data from storage
+    // read data from storage
     // let data = JSON.parse(this.storage.getItem('cartItems')!);
     // if(data!= null){
     //   this.cartItems = data;
@@ -69,7 +69,7 @@ export class CartService {
     this.logCartData(totalPriceValue, totalQuantityValue);
 
     //persist cart data
-    //   this.persistCartItems();
+      // this.persistCartItems();
   }
 
   // persistCartItems(){

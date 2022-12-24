@@ -2,9 +2,9 @@
   <!-- MENU SIDEBAR-->
   <aside class="menu-sidebar d-none d-lg-block">
     <div class="logo">
-      <a routerLink="/products">
+      <a routerLink="/product">
         <img
-          src="assets/images/logo.png"
+          src="assets/images/logo.png" 
           alt="ecommerce"
           class="img-responsive"
         />
@@ -25,11 +25,15 @@
         <div class="container-fluid">
           <div class="header-wrap">
 
-            <button class="btn btn-primary" routerLink="/login">
+            <button *ngIf="!userAuthService.isLoggedIn()" class="btn btn-primary" routerLink="/login">
               Login
             </button>
+
+             <button  *ngIf="userAuthService.isLoggedIn()" class="btn btn-primary" (click)="logout()">
+              Logout
+            </button>
             
-            <div class="ms-auto">
+            <div *ngIf="loginService.roleMatch(['user'])" class="ms-auto">
               <app-cart-status></app-cart-status>
             </div>
 

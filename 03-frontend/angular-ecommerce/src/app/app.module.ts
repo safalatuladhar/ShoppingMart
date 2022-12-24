@@ -23,26 +23,32 @@ import { AddProductComponent } from './crudProduct2/add-product/add-product.comp
 import { EditProductComponent } from './crudProduct2/edit-product/edit-product.component';
 import { ListProductComponent } from './crudProduct2/list-product/list-product.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserComponent } from './dashboard/user/user.component';
+import { AdminComponent } from './dashboard/admin/admin.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
+import { AuthGuard } from './guard/auth.guard';
 
 
 
 const routes: Routes = [
-  { path: '', redirectTo: '/products', pathMatch: 'full' },
+  { path: '', redirectTo: '/product', pathMatch: 'full' },
   { path: 'checkout', component: CheckoutComponent },
-  { path: 'cart-details', component: CartDetailsComponent },
+  { path: 'cart-details', component: CartDetailsComponent, canActivate:[AuthGuard], data:{role:['user']} },
   { path: 'product', component: ProductListComponent },
   { path: 'product/:id', component: ProductDetailsComponent },
   { path: 'search/:keyword', component: ProductListComponent },
   { path: 'category/:id', component: ProductListComponent },
   { path: 'categories', component: ProductListComponent },
-  { path: 'admin/category', component: ListComponent },
+  { path: 'admin/category', component: ListComponent, canActivate:[AuthGuard], data:{role:['admin']} },
   { path: 'login', component: LoginComponent },
-  { path: 'admin/category/add', component: AddComponent },
-  { path: 'admin/category/edit/:id', component: EditComponent },
-  { path: 'admin/product', component: ListProductComponent },
-  { path: 'admin/product/add', component: AddProductComponent },
-  { path: 'admin/product/edit/:id', component: EditProductComponent },
-  { path: '**', redirectTo: '/product', pathMatch: 'full' },
+  { path: 'admin/category/add', component: AddComponent,canActivate:[AuthGuard], data:{role:['admin']} },
+  { path: 'admin/category/edit/:id', component: EditComponent,canActivate:[AuthGuard], data:{role:['admin']} },
+  { path: 'admin/product', component: ListProductComponent,canActivate:[AuthGuard], data:{role:['admin']} },
+  { path: 'admin/product/add', component: AddProductComponent, canActivate:[AuthGuard], data:{role:['admin']} },
+  { path: 'admin/product/edit/:id', component: EditProductComponent,canActivate:[AuthGuard], data:{role:['admin']} },
+  { path: 'user/dashboard', component: UserComponent,canActivate:[AuthGuard], data:{role:['user']} },
+  { path: 'admin/dashboard', component: AdminComponent, canActivate:[AuthGuard], data:{role:['admin']}},
+  { path: '**', component: NotFoundComponent },
 ];
 @NgModule({
   declarations: [
@@ -61,7 +67,10 @@ const routes: Routes = [
     AddProductComponent,
     EditProductComponent,
     ListProductComponent,
-    LoginComponent
+    LoginComponent,
+    UserComponent,
+    AdminComponent,
+    NotFoundComponent
   ],
   imports: [
     RouterModule.forRoot(routes),

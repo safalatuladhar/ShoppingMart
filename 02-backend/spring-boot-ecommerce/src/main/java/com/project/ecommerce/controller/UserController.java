@@ -1,5 +1,6 @@
 package com.project.ecommerce.controller;
 
+import com.project.ecommerce.DTO.UserDTO;
 import com.project.ecommerce.model.User;
 import com.project.ecommerce.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -58,18 +59,18 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public User loginUser(@RequestBody User user) throws Exception {
+    public UserDTO loginUser(@RequestBody User user) throws Exception {
         String tempUserId = user.getUserName();
         String tempPass = user.getPassword();
-        User userObj = null;
+        UserDTO userDTO = null;
         if (tempUserId != null && tempPass != null){
-          userObj =  userService.fetchUserByUsernameAndPassword(tempUserId, tempPass);
+            userDTO =  userService.fetchUserByUsernameAndPassword(tempUserId, tempPass);
         }
 
-        if (userObj == null){
+        if (userDTO == null){
             throw new Exception("Bad credentials");
         }
 
-        return userObj;
+        return userDTO;
     }
 }

@@ -1,5 +1,6 @@
 package com.project.ecommerce.service;
 
+import com.project.ecommerce.DTO.UserDTO;
 import com.project.ecommerce.model.Role;
 import com.project.ecommerce.model.User;
 
@@ -8,6 +9,7 @@ import java.util.List;
 import com.project.ecommerce.repository.RoleRepository;
 import com.project.ecommerce.repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -53,7 +55,10 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public User fetchUserByUsernameAndPassword(String username, String password){
-        return userRepository.findByUserNameAndPassword(username, password);
+    public UserDTO fetchUserByUsernameAndPassword(String username, String password){
+        UserDTO userDTO = new UserDTO();
+        User user =  userRepository.findByUserNameAndPassword(username, password);
+        BeanUtils.copyProperties(user, userDTO);
+        return userDTO;
     }
 }
